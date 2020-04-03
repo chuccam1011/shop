@@ -1,6 +1,7 @@
 <?php
 include 'inc/header.php';
 include 'inc/slider.php';
+
 ?>
 
 
@@ -15,16 +16,16 @@ include 'inc/slider.php';
         <div class="section group">
 
             <?php
-            $getProducts = $product->GetProduct_feathred();
+            $getProducts = $product->GetProduct_feathred(); // nhan ds san pham noi bat type =  0
             if ($getProducts) {
                 while ($result = $getProducts->fetch_assoc()) {
             ?>
                     <div class="grid_1_of_4 images_1_of_4">
-                        <a href="detail.php"><img src="images/feature-pic1.png" alt="" /></a>
+                        <a href="detail.php?detailID=<?php echo $result['productid']; ?> "><img src="<?php echo 'admin/uploads/' . $result['img']; ?>" alt="" /></a>
                         <h2><?php echo $result['productName']; ?></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-                        <p><span class="price">$505.22</span></p>
-                        <div class="button"><span><a href="preview.php" class="details">Details</a></span></div>
+                        <p><?php echo $result['productDesc']; ?></p>
+                        <p><span class="price"><?php echo $result['price']; ?></span></p>
+                        <div class="button"><span><a href="detail.php?detailID=<?php echo $result['productid']; ?> " class="details">Details</a></span></div>
                     </div>
             <?php    }
             } ?>
