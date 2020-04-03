@@ -1,29 +1,50 @@
 <?php
 include 'inc/header.php';
+if (isset($_GET['detailID'])) {
+	$idproduct = $_GET['detailID'];
+}
 
+$getproduct_by_id = $product->getProductById($idproduct);
+
+if ($getproduct_by_id) {
+	$result = $getproduct_by_id->fetch_assoc();
+
+	// get id cate from product table to get cate name
+	$idcate = $result['cateid'];
+	$idbrand = $result['brandid'];
+	$getBand_by_id = $brand->getBrandById($idbrand);
+	$get_cate_by_id = $cat->getCateById($idcate);
+}
+if ($get_cate_by_id) {
+	$category = $get_cate_by_id->fetch_assoc();
+}
+if ($getBand_by_id) {
+	$brandName = $getBand_by_id->fetch_assoc();
+}
 ?>
 
 <!DOCTYPE HTML>
+
 <body>
-	<div class="wrap">
+
 		<div class="main">
 			<div class="content">
 				<div class="section group">
 					<div class="cont-desc span_1_of_2">
 						<div class="grid images_3_of_2">
-							<img src="images/preview-img.jpg" alt="" />
+							<img src="<?php echo 'admin/uploads/' . $result['img'] ?>" alt="" />
 						</div>
 						<div class="desc span_3_of_2">
 							<h2>Lorem Ipsum is simply dummy text </h2>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
 							<div class="price">
-								<p>Price: <span>$500</span></p>
-								<p>Category: <span>Laptop</span></p>
-								<p>Brand:<span>Samsnumg</span></p>
+								<p>Price: <span><?php echo $result['price']; ?></span></p>
+								<p>Category: <span><?php echo $category['cateName']; ?></span></p>
+								<p>Brand:<span><?php echo $brandName['brandName'] ?></span></p>
 							</div>
 							<div class="add-cart">
 								<form action="cart.php" method="post">
-									<input type="number" class="buyfield" name="" value="1" />
+									<input type="number" class="buyfield" name="quantity" value="1" /> 
 									<input type="submit" class="buysubmit" name="submit" value="Buy Now" />
 								</form>
 							</div>
