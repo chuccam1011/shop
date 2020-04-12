@@ -78,10 +78,10 @@ class category
         $query = " DELETE FROM `tbl_category` WHERE cateid='$id'";
         $result = $this->db->delete($query);
         if ($result) {
-            $alert = "<span class= 'success' > Update Category  succsesfull </span>";
+            $alert = "<span class= 'success' > Del Category  succsesfull </span>";
             return $alert;
         } else {
-            $alert = "<span class= 'error' > Update Category fail </span>";
+            $alert = "<span class= 'error' > Del Category fail </span>";
             return $alert;
         }
     }
@@ -326,11 +326,23 @@ class product
     }
     // end backe
     //to font end'
-    public function GetProduct_feathred(){
+    public function GetProduct_feathred()
+    {
         $query = " SELECT * FROM `product` WHERE type='0' ";
         $result = $this->db->select($query);
         return $result;
-
     }
 
+    public function GetProduct_Nonfeathred()
+    {
+        $query = " SELECT * FROM `product` WHERE type='1' ";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    public function GetProductByCate($idcate)
+    {
+        $query = " SELECT * FROM `product` WHERE cateid='$idcate' ";
+        $result = $this->db->select($query);
+        return $result;
+    }
 }

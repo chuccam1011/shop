@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="copy_right">
-                <p>Training with live project &amp; All rights Reseverd </p>
+                <!-- <p>Training with live project &amp; All rights Reseverd </p> -->
             </div>
         </div>
     </div>
