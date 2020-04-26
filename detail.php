@@ -43,7 +43,7 @@ if ($getBand_by_id) {
 							<p>Brand:<span><?php echo $brandName['brandName'] ?></span></p>
 						</div>
 						<div class="add-cart">
-							<form action="cart.php" method="post">
+							<form action="cart.php?idproduct=<?php echo $idproduct; ?>" method="post">
 								<input type="number" class="buyfield" name="quantity" value="1" />
 								<input type="submit" class="buysubmit" name="submit" value="Buy Now" />
 							</form>
